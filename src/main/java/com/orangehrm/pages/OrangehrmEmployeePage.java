@@ -43,11 +43,11 @@ public class OrangehrmEmployeePage {
 	By empSearchbox = By.id("employee_name_quick_filter_employee_list_value");
 	By clickNewEmp = By.xpath("//span[text()=\"Aditya Abhimanyu Mane\"]");
 	By openNewEmp = By.xpath("//td[text()=\"Aditya Abhimanyu Mane \"]");
-	By applyLeave = By.xpath("//*[@id=\"widget.id\"]/span/span/quick-access-widget/div/div/div[2]/span/div/span[2]/span[3]/div[1]/span/span/img");
+	By applyLeave = By.xpath(
+			"//*[@id=\"widget.id\"]/span/span/quick-access-widget/div/div/div[2]/span/div/span[2]/span[3]/div[1]/span/span/img");
 	By leaveDate = By.id("leave.assign_fromDate");
 	By applyLeaveClick = By.xpath("//*[@id=\"mount-vue-app\"]/div/div[2]/div/div[2]/form/div[13]/button/div");
-	
-	
+
 	public OrangehrmEmployeePage(WebDriver driver) {
 		this.driver = driver;
 	}
@@ -56,16 +56,19 @@ public class OrangehrmEmployeePage {
 		driver.findElement(empList).click();
 	}
 
+	public void clickOnAddEmployeeButton() {
+
+		driver.findElement(empList).click();
+
+		driver.findElement(addEmpButton).click();
+
+	}
 
 	public void addEmployee(Employee emp) throws InterruptedException {
 
-		driver.findElement(empList).click();
-		
-		driver.findElement(addEmpButton).click();
-
 		driver.findElement(firstName).sendKeys(emp.getFirstName());
 
-	//	driver.findElement(middleName).sendKeys("Abhimanyu");
+		// driver.findElement(middleName).sendKeys("Abhimanyu");
 
 		driver.findElement(lastName).sendKeys(emp.getLastName());
 
@@ -74,9 +77,9 @@ public class OrangehrmEmployeePage {
 		driver.findElement(locationName).click();
 
 		driver.findElement(saveButton).click();
-		
+
 		Thread.sleep(1000);
-		
+
 		driver.findElement(saveButton).click();
 
 		driver.findElement(empBirthday).sendKeys("Wed, 23 Oct 1996");
@@ -122,23 +125,22 @@ public class OrangehrmEmployeePage {
 		driver.findElement(saveEmpButton).click();
 
 	}
-	
+
 	public boolean isEmployeeAdded(String firstName, String lastName) {
 		return driver.findElement(By.xpath("//span[text()=\"" + firstName + "  " + lastName + "\"]")).isDisplayed();
 	}
 
 	public void goToHome() {
-		driver.findElement(By.xpath("//*[@id=\"top-ribbon-menu\"]/div[1]/div/a/i")).click();  
+		driver.findElement(By.xpath("//*[@id=\"top-ribbon-menu\"]/div[1]/div/a/i")).click();
 	}
-	
+
 	public void searchEmployee() throws InterruptedException {
 
 		driver.findElement(empList).click();
 
 		driver.findElement(empListVerifier).isEnabled();
 
-		driver.findElement(empSearchbox)
-				.sendKeys("Aditya Abhimanyu Mane" + Keys.ENTER);
+		driver.findElement(empSearchbox).sendKeys("Aditya Abhimanyu Mane" + Keys.ENTER);
 
 		driver.findElement(clickNewEmp).click();
 
