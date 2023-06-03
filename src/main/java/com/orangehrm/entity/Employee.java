@@ -8,6 +8,13 @@ public class Employee {
 	private String firstName;
 	private String lastName;
 	private String gender;
+	
+	public Employee(String firstName, String lastName, String gender) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.gender = gender;
+	}
 	public String getFirstName() {
 		return firstName;
 	}
